@@ -28,12 +28,15 @@ export function setupModelSelection(
       }
 
       selectedMesh = selectedObject as THREE.Mesh;
-      selectedMesh.material.emissive.set(0x3333ff);
+      if (selectedMesh.material instanceof THREE.MeshStandardMaterial) {
+        selectedMesh.material.emissive.set(0x3333ff);
+      }
       
     } else { //Otherwise remove selection color
-      selectedMesh?.material.emissive.set(0x000000);
-      selectedMesh = null;
-
+        if (selectedMesh?.material instanceof THREE.MeshStandardMaterial) {
+          selectedMesh?.material.emissive.set(0x000000);
+        }
+        selectedMesh = null;
     }
   });
 }
@@ -41,7 +44,7 @@ export function setupModelSelection(
 //Extend the selected object one discrete step
 function extend(): void {
   const movementAmount = 0.2;
-  const geometry = selectedMesh.geometry as THREE.BufferGeometry;
+  const geometry = selectedMesh?.geometry as THREE.BufferGeometry;
   const posAttr = geometry.getAttribute('position');
 
   for (let i = 0; i < posAttr.count; i++) {

@@ -12,7 +12,7 @@ export function setupScene(): { scene: THREE.Scene, camera: THREE.PerspectiveCam
 
   //Render on element with id: bg
   const renderer = new THREE.WebGLRenderer({
-    canvas: document.querySelector('#bg'),
+    canvas: document.querySelector('#bg') as HTMLCanvasElement,
   })
 
   renderer.setPixelRatio(window.devicePixelRatio);
@@ -44,7 +44,7 @@ function loadModel(model: string, texture: string) {
 
     //Texture
     model.traverse((child) => {
-      if (child.isMesh) {
+      if(child instanceof THREE.Mesh){
         // Load a new texture
         const textureLoader = new THREE.TextureLoader();
         const newTexture = textureLoader.load(texture);
@@ -59,6 +59,7 @@ function loadModel(model: string, texture: string) {
 
         child.material.needsUpdate = true;
       }
+      
     });
   }, undefined, function (error) {
     console.error(error);
