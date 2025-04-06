@@ -23,3 +23,10 @@ This demo loads a `.glb` model into a 3D scene using Three.js. It allows the use
 
 2. **Blender-style Scale Mode**  
    Inspired by Blender's interaction model, pressing `S` after selection enters an interactive scaling mode where the user can move the mouse to smoothly extend the model in the X-direction.
+
+
+### Install dependencies
+***Requirements***: Node.js and npm
+
+run ```npm install``` to install dependencies and then ```npm run dev``` to run the local server
+
